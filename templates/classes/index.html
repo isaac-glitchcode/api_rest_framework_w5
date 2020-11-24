@@ -1,0 +1,17 @@
+{%extends '../index/index.html'%}
+{%block content%}
+<table class="table table-dark">
+    {%if classes%}
+    <ul class="cls">
+        {%for class in classes%}
+        <li class="classes" id="_{{class.id}}">
+            <a href="http://localhost:8000/classes/class/{{class.id}}"><div class="_{{class.id}}">
+                <p>{{class.name}}</p>
+            </div></a>
+        </li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+</table>
+{%endblock%}
+

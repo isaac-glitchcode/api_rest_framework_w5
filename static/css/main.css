@@ -1,0 +1,210 @@
+body{
+    background-color:#263346;
+    color: #fff
+}
+
+.nav>nav, footer{
+    display: grid;
+    grid-template-columns: [x0] 1fr [x1] 1fr [x2] 1fr [x3] ;
+    justify-content: stretch;
+    align-items: stretch;
+    box-shadow: 10px 5px 12px rgba(0,0,0,0.5);
+
+}
+
+.nav-item:nth-child(-n+3)>a{
+    text-decoration: none;
+    color: #fff;
+}
+.nav-item:nth-child(-n+3)>a:hover{
+    color: #fff;
+    padding: 0 0 2px 0;
+    border-bottom: 2px solid green;
+}
+ul{
+    widows: 80%;
+}
+ul>li{
+    list-style: none;
+    display: inline;
+    margin-left: 10%;
+}
+
+.brand{
+    grid-column-start: x0;
+    grid-column-end: x1;
+    width:20vh;
+    padding:10px;
+    margin: 0 10% 0 30%;
+    
+}
+.collapse{
+    grid-column-start: x1;
+    grid-column-end: x2;
+    padding:10px;
+    width:100vh;
+    margin:auto;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.form-inline{
+    grid-column-start: x2;
+    grid-column-end: x3;
+    margin:auto;
+}
+
+
+
+.banner{
+    margin:0 auto 80px auto;
+	width: 100%;
+	min-width: 230px;
+	max-width: 100%;
+	position: relative;
+	height: 100vh;
+	min-height: 300px;
+	max-height: 500px;
+	border-radius: 10px;
+	overflow: hidden;
+    background-image:linear-gradient(to bottom right,rgba(25, 57, 125, 0.5), rgba(135, 240, 240, 0.5)),url('https://img.pngio.com/handsome-african-american-male-student-wearing-headphones-is-student-with-headphones-png-1920_1080.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container-envelope {
+    padding: 50px 15px;
+    margin:5% 0 0 10%;
+    color: #fff;
+    
+}
+.container-envelope h1 { padding-bottom: 15px;}
+
+.footer{
+    display:flex;
+    justify-content:center;
+    margin: 100px 0 0 0;
+}
+
+
+
+
+/*Pasar a otro archivo css*/
+.table{
+    padding:20px 20%;
+}
+
+.user{
+    width:40px;
+    height: 40px;
+}
+.table>ul>li{
+    display:grid;
+    grid-template-columns: [x0] 1fr [x1] 1fr [x2] 1fr [x3] 1fr [x4] 1fr [x5] ;
+    justify-content: center;
+    align-items: center;
+
+}
+.table>ul>li>img{
+    grid-column-start: x0;
+    grid-column-end: x1;
+    
+
+}
+.table>ul>li>p{
+    
+    text-align: center;
+    font-weight: 200;
+    font-size: 18px;
+    margin-right: 50px;
+}
+
+hr{
+   
+   border:1px solid rgba(0,0,0,0.2);
+}
+
+
+
+/*Cursos*/
+.cls{
+    display:grid;
+    grid-template-columns: [x0] 1fr [x1] 1fr [x2] 1fr [x3] 1fr [x4];
+    color: #000;
+    font-weight: bold;
+    margin:auto;
+}
+.cls>li{
+   display:flex;
+   justify-content:center;
+   border-radius: 6px;
+}
+.cls>li>div{
+    width: 80%;
+    height: 60px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.classes> a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 60px;
+}
+
+.cls>._1{
+    grid-column-start: x0;
+    grid-column-end: x1;
+    
+}
+
+.cls>#_1{
+    background-color: rgba(109, 224, 55, 0.7);
+}
+
+.cls>._2{
+    grid-column-start: x1;
+    grid-column-end: x2;
+}
+
+.cls>#_2{
+    background-color: rgba(224, 222, 55, 0.7);
+}
+
+.class_element>.class_{
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 60px;
+    border-radius: 6px;
+    margin-bottom:20px;
+}
+.cls>._3{
+    grid-column-start: x2;
+    grid-column-end: x3;
+}
+.cls>#_3, .class_element>.class_{
+    background-color: rgba(55, 162, 224, 0.7);
+}
+.cls>._4{
+    grid-column-start: x3;
+    grid-column-end: x4;
+}
+.cls>#_4, .class_element>.class_{
+    background-color: rgba(79, 184, 131, 0.7);
+}
+
+

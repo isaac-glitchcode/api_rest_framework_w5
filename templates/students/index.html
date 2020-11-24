@@ -1,0 +1,20 @@
+{%extends '../index/index.html'%}
+{%load static%}
+
+{%block content%}
+<div class="table table-dark">
+    <ul>
+        {%if students%}
+            {%for student in students%}
+                <li>
+                    <img class="user" src={%static 'img/user.png'%} alt="icon">
+                    <p>{{student.name}}<p>
+                    <a class="btn btn-primary" href="http://localhost:8000/student/{{student.id}}">More</a>
+                </li>
+                <hr> 
+            {%endfor%}
+        {%endif%}
+    </ul>
+</div>
+{%endblock%}
+
