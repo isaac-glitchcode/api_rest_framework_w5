@@ -1,63 +1,101 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import  get_object_or_404
 from students.models import Student
-from django.views import View
-from rest_framework.decorators import api_view 
+from students.serializers import StudentSerializer
+
 from rest_framework import status
 from rest_framework.response import Response
-from students.serializers import StudentSerializer
+from rest_framework.views import APIView
+
  
 
-
-@api_view(['GET', 'POST'])
-def students(req):
-    if req.method == 'GET':
-        
+class ListStudentsAPIView(APIView):
+    
+    def get(self, req):
         students = Student.objects.all()
-        
-        serialized= StudentSerializer(students, many=True) 
-    
-        return Response(status=status.HTTP_200_OK, data=serialized.data)
-    
-    if req.method == 'POST':
-        
+        students_serialized = StudentSerializer(students, many=True)
+        return Response(status=status.HTTP_200_OK, data=students_serialized.data)
+
+    def post(self, req):
         student = StudentSerializer(data=req.data)
-        
-        
         if student.is_valid():
             student.save()
             return Response(status=status.HTTP_201_CREATED)
-        
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST, data=student.errros)
-        
-@api_view(['GET', 'PUT', 'DELETE'])
-def student(req, student_id):
+            return Response(status=status.HTTP_400, data=student.errors)
+
+class UpdateStudentAPIView(APIView):
     
-    student_obj = get_object_or_404(Student, id=student_id)
+    def get(self, req, pk):
+        student_obj = get_object_or_404(Student, id=pk)
+        student_serialized = StudentSerializer(student_obj)
+        return Response(status=status.HTTP_200_OK, data=student_serialized.data)
     
-    if req.method == 'GET':
+    def put(self, req, pk):
+        student_obj = get_object_or_404(Student, id=pk)
+        serialized = StudentSerializer(instance=student_obj, data=req.data, partial=True)
+        if serialized.is_valid():
+            serialized.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data=serialized.errors)
         
-        serialized = StudentSerializer(student_obj)
-        return Response(status=status.HTTP_200_OK, data=serialized.data)
-    
-    if req.method == 'PUT':
-        
-         serialized = StudentSerializer(instance = student_obj, data= req.data, partial=True)
-         
-         if serialized.is_valid():
-             
-             serialized.save()
-             return Response(status=status.HTTP_200_OK)
-         
-         else:
-             
-             return Response(status=status.HTTP_400_BAD_REQUEST, data=serialized.errors)
-         
-    if req.method == 'DELETE':
-        
+    def delete(self, req, pk):
+        student_obj = get_object_or_404(Student, id=pk)
         student_obj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+# @api_view(['GET', 'POST'])
+# def students(req):
+#     if req.method == 'GET':
+        
+#         students = Student.objects.all()
+        
+#         serialized= StudentSerializer(students, many=True) 
+    
+#         return Response(status=status.HTTP_200_OK, data=serialized.data)
+    
+#     if req.method == 'POST':
+        
+#         student = StudentSerializer(data=req.data)
+        
+        
+#         if student.is_valid():
+#             student.save()
+#             return Response(status=status.HTTP_201_CREATED)
+        
+#         else:
+#             return Response(status=status.HTTP_400_BAD_REQUEST, data=student.errros)
+        
+# @api_view(['GET', 'PUT', 'DELETE'])
+# def student(req, student_id):
+    
+#     student_obj = get_object_or_404(Student, id=student_id)
+    
+#     if req.method == 'GET':
+        
+#         serialized = StudentSerializer(student_obj)
+#         return Response(status=status.HTTP_200_OK, data=serialized.data)
+    
+#     if req.method == 'PUT':
+        
+#          serialized = StudentSerializer(instance = student_obj, data= req.data, partial=True)
+         
+#          if serialized.is_valid():
+             
+#              serialized.save()
+#              return Response(status=status.HTTP_200_OK)
+         
+#          else:
+             
+#              return Response(status=status.HTTP_400_BAD_REQUEST, data=serialized.errors)
+         
+#     if req.method == 'DELETE':
+        
+#         student_obj.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 

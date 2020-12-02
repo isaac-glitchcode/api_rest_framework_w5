@@ -1,7 +1,7 @@
 from django.urls import path
-from professors.views import professors, professor
+from professors.views import ListProfessorsAPIView, UpdateProfessorAPIView
 
 urlpatterns = [
-    path('professors/', professors),
-    path('professor/<professor_id>/', professor)
+    path('', ListProfessorsAPIView.as_view(), name='professors'),
+    path('<pk>/', UpdateProfessorAPIView.as_view(), name='professor'),
 ]
